@@ -20,15 +20,9 @@ function onCardDelete(cardId, setCardsDisplayed, cardsDisplayed) {
 function onCardUpvote(cardBody, setCardsDisplayed, cardsDisplayed) {
 	return async function() {
 		const cardId = cardBody.id
-		if (cardBody.incremented == false || cardBody.incremented == undefined) {
-			const newUpvoteValue = await changeUpvote(cardId, {"action": "increment"})
-			cardBody.incremented = true
-			cardBody.upvotes = newUpvoteValue.upvotes
-		} else {
-			const newUpvoteValue = await changeUpvote(cardId, {"action": "decrement"})
-			cardBody.incremented = false
-			cardBody.upvotes = newUpvoteValue.upvotes
-		}
+		const newUpvoteValue = await changeUpvote(cardId, {"action": "increment"})
+		cardBody.incremented = true
+		cardBody.upvotes = newUpvoteValue.upvotes
 
 		const cloneOfCardsDisplay = [...cardsDisplayed]
 		cloneOfCardsDisplay.map((card) => {
@@ -88,7 +82,7 @@ export function CardContainer() {
 	return (
 		<div>
 			<div id="main-header">
-				<Link to={"/"} id="back-button">HERE</Link>
+				<Link to={"/"} id="back-button">Go Back</Link>
 				<h1>Kudos Board</h1>
 				<h2>{boardInfo.title || 'Title'}</h2>
 				<h3>{boardInfo.category || 'Unknown Category'}</h3>
