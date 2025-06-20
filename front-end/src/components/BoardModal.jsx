@@ -5,7 +5,7 @@ const DEFAULT_CATEGORY = "Select a Category"
 
 export function BoardModal(props) {
     return (
-        <div id="board-modal">
+        <div id="board-modal" className="modal">
             <div className="board-modal-content">
                 <span className="close" onClick={disableBoardModal}>&times;</span>
                 <h2>Create a New Board</h2>

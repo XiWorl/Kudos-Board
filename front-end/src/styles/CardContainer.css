@@ -24,7 +24,7 @@
     --shadow-medium: rgba(32, 178, 170, 0.2);
 }
 
-#board-container {
+.container{
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 20px;
@@ -36,31 +36,31 @@
 
 
 @media (min-width: 480px) {
-    #board-container {
+    .container{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 768px) {
-    #board-container {
+    .container{
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
-    #board-container {
+    .container{
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (min-width: 1280px) {
-    #board-container {
+    .container{
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
 @media (min-width: 1536px) {
-    #board-container {
+    .container{
         grid-template-columns: repeat(6, 1fr);
     }
 }
