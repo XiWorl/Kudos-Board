@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CardContainer } from './components/CardContainer'
+import { BoardContainer } from './components/BoardContainer'
 import { Header } from './components/Header'
 import { BoardModal } from './components/BoardModal'
 
@@ -19,7 +19,7 @@ function App() {
       <div id="body-content">
         <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} setCurrentFilter={setCurrentFilter} displayedCards={displayedCards}/>
         <BoardModal displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} />
-        <CardContainer displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} searchQuery={searchQuery} currentFilter={currentFilter}/>
+        <BoardContainer displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} searchQuery={searchQuery} currentFilter={currentFilter}/>
       </div>
     </>
   )
