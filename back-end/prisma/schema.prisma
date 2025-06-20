@@ -16,11 +16,11 @@ datasource db {
 
 model Board {
   id Int @id @default(autoincrement())
-  title String?
+  title String
   createdAt DateTime @default(now())
-  author String?
-  category String?
-  imageUrl String?
+  author String
+  category String
+  imageUrl String
   cards Card[]
 }
 
