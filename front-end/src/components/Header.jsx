@@ -1,5 +1,4 @@
-import { enableBoardModal, disableBoardModal } from "./BoardModal"
-import { renderSort } from "./CardContainer"
+import { enableBoardModal } from "./BoardModal"
 import "../styles/Header.css"
 
 

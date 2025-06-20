@@ -1,15 +1,16 @@
 import "../styles/Card.css"
+import { deleteBoard } from "../api"
 
 
 function ViewBoardButton(props) {
-    return (
-        <button onClick={props.onClick}>View Board</button>
-    )
+    return function() {
+    }
 }
 function DeleteBoardButton(props) {
-    return (
-        <button onClick={props.onClick}>Delete Board</button>
-    )
+    return function() {
+        deleteBoard(props.cardBody.id)
+        props.setDisplayedCards(props.displayedCards.filter(card => card.id != props.cardBody.id))
+    }
 }
 
 
@@ -23,8 +24,8 @@ export function Card(props) {
             </div>
 
             <div className="card-interactables">
-                <ViewBoardButton />
-                <DeleteBoardButton />
+                <button onClick={ViewBoardButton(props)}>View Board</button>
+                <button onClick={DeleteBoardButton(props)}>Delete Board</button>
             </div>
         </div>
     )
