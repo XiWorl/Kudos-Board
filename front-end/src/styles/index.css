@@ -42,13 +42,10 @@ button {
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
+
 button:hover {
   border-color: var(--primary-teal);
   background-color: var(--primary-teal);
   color: var(--primary-white);
 }
-button:focus,
-button:focus-visible {
-  outline: 2px solid var(--text-accent);
-  outline-offset: 2px;
-}
+
