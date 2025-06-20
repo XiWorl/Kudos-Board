@@ -16,11 +16,11 @@ datasource db {
 
 model Board {
   id        Int      @id @default(autoincrement())
-  title     String?
+  title     String
   createdAt DateTime @default(now())
-  author    String?
-  category  String?
-  imageUrl  String?
+  author    String
+  category  String
+  imageUrl  String
   cards     Card[]
 }
 
@@ -31,6 +31,6 @@ model Card {
   author    String
   gifUrl    String
   upvotes   Int      @default(0)
-  board     Board    @relation(fields: [boardId], references: [id])
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
   boardId   Int
 }

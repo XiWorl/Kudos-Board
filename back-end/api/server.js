@@ -33,6 +33,7 @@ function checkIfCardIsValid(data) {
 }
 
 
+// GET
 server.get("/api/boards", async (req, res, next) => {
 	try {
 		const data = await prisma.board.findMany()
@@ -48,7 +49,7 @@ server.get("/api/boards", async (req, res, next) => {
 server.get("/api/boards/:boardId", async (req, res, next) => {
 	try {
 		const id = parseInt(req.params.boardId)
-		const data = await prisma.board.findUnique({ where: { id: id } })
+		const data = await prisma.board.findUnique({ where: {id: id} })
 		res.status(200).json(data)
 		return
 
@@ -73,7 +74,7 @@ server.get("/api/cards", async (req, res, next) => {
 server.get("/api/cards/:cardId", async (req, res, next) => {
 	try {
 		const id = parseInt(req.params.cardId)
-		const data = await prisma.card.findUnique({ where: { id: id } })
+		const data = await prisma.card.findUnique({ where: {id: id} })
 		res.status(200).json(data)
 		return
 
@@ -83,6 +84,7 @@ server.get("/api/cards/:cardId", async (req, res, next) => {
 	}
 })
 
+// POST
 server.post("/api/boards", async (req, res, next) => {
 	const newBoard = req.body
 
@@ -103,7 +105,7 @@ server.post("/api/boards", async (req, res, next) => {
 
 server.post("/api/boards/:boardId/cards", async (req, res, next) => {
 	const newCard = req.body
-	
+
 	try {
 		if (checkIfCardIsValid(newCard) == true) {
 			const data = await prisma.card.create({ data: newCard })
@@ -118,6 +120,71 @@ server.post("/api/boards/:boardId/cards", async (req, res, next) => {
 		return
 	}
 })
+
+
+// DELETE
+server.delete("/api/boards/:boardId", async (req, res, next) => {
+	try {
+		const id = parseInt(req.params.boardId)
+		const deleted = await prisma.board.delete({ where:{ id: id  }})
+		res.status(200).json(deleted)
+		return
+	} catch (err) {
+		next(err)
+		return
+	}
+})
+
+server.delete("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
+	try {
+		const id = parseInt(req.params.cardId)
+		const deleted = await prisma.card.delete({ where:{id: id}})
+		res.status(200).json(deleted)
+		return
+	} catch (err) {
+		next(err)
+		return
+	}
+})
+
+// PATCH
+server.patch("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
+	const action = req.body["action"]
+	
+	if (action !== undefined) {
+		try {
+			const id = parseInt(req.params.cardId)
+			const data = await prisma.card.findUnique({ where: {id: id} })
+			if (data == null || data.upvotes == null ) {
+				next({ message: "Card not found", status: 404 })
+				return
+			}
+
+			let updated = ""
+
+			if (action == "increment") {
+				updated = await prisma.card.update({
+					where:{id: id}, data: {upvotes: data.upvotes + 1}
+				})
+			} else if (action == "decrement") {
+				updated = await prisma.card.update({
+					where:{id: id}, data: {upvotes: data.upvotes - 1}
+				})
+			}
+			res.status(200).json(updated)
+			return
+
+		} catch (err) {
+			next(err)
+			return
+		}
+	}
+
+	next({ message: "Invalid action", status: 400 })
+})
+
+//TODO: name all card id's "cardid" and board id's "boardid"
+
 
 // Error handling middleware
 server.use((err, req, res, next) => {
