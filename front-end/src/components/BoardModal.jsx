@@ -42,7 +42,7 @@ function createBoard(displayedCards, setDisplayedCards) {
             alert("Please select a category and title for your board")
             return
         }
-        const boardData = await createNewBoard({"title": title, "category": category, "author": author, "imageUrl": "#"})
+        const boardData = await createNewBoard({"title": title, "category": category, "author": author, "imageUrl": "https://picsum.photos/200/300"})
         setDisplayedCards([...displayedCards, boardData])
         disableBoardModal()
     }
