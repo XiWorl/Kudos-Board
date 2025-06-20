@@ -3,6 +3,7 @@ import { BoardContainer } from './components/BoardContainer'
 import { Header } from './components/Header'
 import { BoardModal } from './components/BoardModal'
 import { Footer } from './components/Footer'
+import { ThemeToggle } from './components/ThemeToggle'
 
 import "./styles/App.css"
 
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+      <ThemeToggle />
       <div id="body-content">
         <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} setCurrentFilter={setCurrentFilter} displayedCards={displayedCards}/>
         <BoardModal displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} />

@@ -1,27 +1,39 @@
-
-
-/* Light Theme Color Variables */
 :root {
-    /* Primary Colors */
     --primary-white: #ffffff;
     --primary-teal: #20b2aa;
     --primary-blue-green: #17a2b8;
 
-    /* Background Colors */
     --bg-primary: var(--primary-white);
     --bg-secondary: #f8ffff;
 
-    /* Text Colors */
     --text-primary: #2c3e50;
     --text-accent: var(--primary-teal);
 
-    /* Border Colors */
     --border-light: #e1f5f5;
     --border-dark: var(--primary-teal);
 
-    /* Shadow Colors */
     --shadow-light: rgba(32, 178, 170, 0.1);
     --shadow-medium: rgba(32, 178, 170, 0.2);
+    --shadow-dark: rgba(32, 178, 170, 0.3);
+}
+
+[data-theme="dark"] {
+    --primary-white: #1a1a1a;
+    --primary-teal: #4dd0d0;
+    --primary-blue-green: #5bc0de;
+
+    --bg-primary: #2d2d2d;
+    --bg-secondary: #1e1e1e;
+
+    --text-primary: #e0e0e0;
+    --text-accent: var(--primary-teal);
+
+    --border-light: #404040;
+    --border-dark: var(--primary-teal);
+
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.5);
+    --shadow-dark: rgba(0, 0, 0, 0.7);
 }
 
 .container{
