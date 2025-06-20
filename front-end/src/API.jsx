@@ -49,3 +49,20 @@ export async function getCardsFromBoard(boardId) {
         console.error('Error retrieving data:', error)
     }
 }
+
+export async function createNewCard(boardId, cardData) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/boards/${boardId}/cards`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(cardData),
+        })
+
+        const data = await response.json()
+		return data;
+    } catch (error) {
+        console.error('Error posting data:', error)
+    }
+}

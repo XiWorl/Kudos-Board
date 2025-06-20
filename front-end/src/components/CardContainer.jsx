@@ -47,7 +47,7 @@ export function CardContainer() {
 			<h1>Kudos Board</h1>
 			<h2>Title</h2>
 			<button>Create a Card</button>
-			<CardModal />
+			<CardModal boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
 			<Container boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
 		</>
 	)
