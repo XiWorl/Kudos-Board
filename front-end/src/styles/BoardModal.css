@@ -7,21 +7,24 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
+    background-color: rgba(117, 117, 117, 0.5);
 }
 
 .board-modal-content {
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     margin: 5% auto;
     padding: 30px;
     border: none;
     border-radius: 12px;
     width: 90%;
     max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px var(--shadow-dark);
     position: relative;
     animation: modalSlideIn 0.3s ease-out;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 @keyframes modalSlideIn {
@@ -36,7 +39,7 @@
 }
 
 .close {
-    color: #aaa;
+    color: var(--text-primary);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -47,56 +50,56 @@
     transition: color 0.3s ease;
 }
 
-.close:hover,
 .close:focus {
-    color: #000;
+    color: var(--primary-teal);
     text-decoration: none;
 }
 
 .board-modal-content h2 {
     margin-top: 0;
     margin-bottom: 25px;
-    color: #333;
+    color: var(--text-primary);
     font-size: 24px;
     text-align: center;
 }
 
-.board-modal-content > div {
+.board-modal-content div {
     margin-bottom: 20px;
 }
 
 .board-modal-content h3 {
     margin-bottom: 8px;
-    color: #555;
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: 600;
 }
 
-.board-modal-content input[type="text"],
 .board-modal-content select {
     width: 100%;
     padding: 12px;
-    border: 2px solid #e1e1e1;
+    border: 2px solid var(--border-light);
     border-radius: 6px;
     font-size: 14px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
-.board-modal-content input[type="text"]:focus,
 .board-modal-content select:focus {
     outline: none;
-    border-color: #20b2aa;
-    box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.1);
+    border-color: var(--primary-teal);
+    box-shadow: 0 0 0 3px var(--shadow-light);
 }
 
 .board-modal-content select {
     cursor: pointer;
-    background-color: #fff;
 }
 
 .board-modal-content select option {
     padding: 10px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 #gifs-container {
@@ -106,8 +109,9 @@
     max-height: 200px;
     overflow-y: auto;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-light);
     border-radius: 5px;
+    background-color: var(--bg-secondary);
 }
 
 #gifs-container img {
