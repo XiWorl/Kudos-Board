@@ -132,6 +132,7 @@ exports.Prisma.BoardScalarFieldEnum = {
 exports.Prisma.CardScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
+  title: 'title',
   message: 'message',
   author: 'author',
   gifUrl: 'gifUrl',
@@ -147,6 +148,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
