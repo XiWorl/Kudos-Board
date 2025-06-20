@@ -2,7 +2,7 @@
 
 Submitted by: **URIEL VIT-OJIEGBE**
 
-Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-board-frontend-ve0x.onrender.com)
+Deployed Application: [Kudos Board Deployed Site](https://kudos-board-frontend-ve0x.onrender.com)
 
 **Note:** when viewing pull requests, please remove all filters to view all details
 
