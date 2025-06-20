@@ -17,7 +17,7 @@ function App() {
     <>
       <div id="body-content">
         <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <BoardModal setDisplayedCards={setDisplayedCards} />
+        <BoardModal displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} />
         <CardContainer displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} searchQuery={searchQuery}/>
       </div>
     </>
