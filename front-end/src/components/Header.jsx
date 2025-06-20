@@ -1,4 +1,11 @@
+import { enableBoardModal, disableBoardModal } from "./BoardModal"
 import "../styles/Header.css"
+
+
+function onCreateBoard() {
+    console.log("Creating a new board")
+    enableBoardModal()
+}
 
 export function Header() {
     return (
@@ -16,7 +23,7 @@ export function Header() {
                 <button className="filter-button">Thank You</button>
                 <button className="filter-button">Inspiration</button>
             </div>
-            <button id="create-a-board" className="filter-button">Create A New Board</button>
+            <button id="create-a-board" className="filter-button" onClick={onCreateBoard}>Create A New Board</button>
         </>
     )
 }

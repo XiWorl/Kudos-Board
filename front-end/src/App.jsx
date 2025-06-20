@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CardContainer } from './components/CardContainer'
 import { Header } from './components/Header'
+import { BoardModal } from './components/BoardModal'
 import "./styles/App.css"
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <>
       <div id="body-content">
         <Header />
+        <BoardModal />
         <CardContainer displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} searchQuery={searchQuery}/>
       </div>
     </>
