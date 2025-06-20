@@ -4,15 +4,16 @@ import { getCardsFromBoard } from "../api"
 import { useParams } from "react-router-dom"
 import { useState } from "react"
 import { useEffect } from "react"
+import { enableCardModal } from "./CardModal"
 
 
-function Card() {
+function Card(props) {
 	return (
 		<div className="card">
-			<h2>Card Title</h2>
-			<h3>Card Description</h3>
-			<h3>Card Owner</h3>
-			<button>Upvote</button>
+			<h2>{props.cardBody.title}</h2>
+			<h3>{props.cardBody.message}</h3>
+			<h3>{props.cardBody.author}</h3>
+			<button>Upvotes: {props.cardBody.upvotes}</button>
 			<button>Delete</button>
 		</div>
 	)
@@ -21,6 +22,9 @@ function Card() {
 function Container(props) {
 	useEffect(() => {
 		getCardsFromBoard(props.boardId).then((cards) => {
+			cards.map((card) => {
+				card.incremented = false
+			})
 			props.setCardsDisplayed(...props.cardsDisplayed, cards)
 		})
 	}, [])
@@ -28,8 +32,8 @@ function Container(props) {
 	return (
 		<div className="container">
 			{
-				props.cardsDisplayed.map((card) => {
-					return <Card />
+				props.cardsDisplayed.map((cardInfo) => {
+					return <Card cardBody={cardInfo}/>
 				})
 			}
 		</div>
@@ -46,7 +50,7 @@ export function CardContainer() {
 		<>
 			<h1>Kudos Board</h1>
 			<h2>Title</h2>
-			<button>Create a Card</button>
+			<button onClick={enableCardModal}>Create a Card</button>
 			<CardModal boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
 			<Container boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
 		</>

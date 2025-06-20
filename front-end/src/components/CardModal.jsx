@@ -5,11 +5,15 @@ import "../styles/BoardModal.css"
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 function disablCardModal() {
+    document.getElementById("card-modal").style.display = "none"
+}
 
+export function enableCardModal() {
+    document.getElementById("card-modal").style.display = "block"
 }
 
 function onGIFImageClicked(gifURL, setDisplayedGIFs) {
-    return function(a) {
+    return function() {
         document.getElementById("card-gif-url").value = gifURL
         document.getElementById("card-gif-search").value = ""
         setDisplayedGIFs([])
@@ -41,6 +45,7 @@ function createCard(boardId, cardsDisplayed, setCardsDisplayed) {
         }
         const cardData = await createNewCard(boardId, { "title": title, "message": description, "gifUrl": gifUrl, "upvotes": 0, "boardId": parseInt(boardId), "author": owner})
         setCardsDisplayed([...cardsDisplayed, cardData])
+        disablCardModal()
     }
 }
 
@@ -61,7 +66,7 @@ export function CardModal(props) {
     const [displayedGIFs, setDisplayedGIFs] = useState([])
 
     return (
-        <div id="card-modal">
+        <div id="card-modal" className="modal">
             <div className="board-modal-content">
                 <span className="close" onClick={disablCardModal}>&times;</span>
                 <h2>Create a New Card</h2>
