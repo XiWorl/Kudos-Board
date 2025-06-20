@@ -3,11 +3,16 @@ import { useEffect } from "react"
 import { getBoards } from "../api"
 import "../styles/CardContainer.css"
 
-let testData = [
-    {id: 1, title: "Board title", type: "Thank You", author: "John"},
-    {id: 2, title: "Here I am", type: "Thank You", author: "Jimmy"},
-    {id: 3, title: "Title", type: "Celebration", author: "Johnny"},
-]
+const sortOptions = {
+    "Recent": function(a, b) { return a.id < b.id ? 1 : -1 },
+    "All": function(a, b) { return a.id > b.id ? 1 : -1 },
+}
+
+const filterOptions = {
+    "Celebration": function(a) { return a.type == "Celebration" },
+    "Thank You": function(a) { return a.type == "Thank You" },
+    "Inspiration": function(a) { return a.type == "Inspiration" },
+}
 
 function searchQueryFilter(searchQuery, cardData) {
     if (searchQuery == "" || searchQuery == " ") {
@@ -18,8 +23,13 @@ function searchQueryFilter(searchQuery, cardData) {
     }
     return false
 }
-function searchFilter(cardData) {
 
+export function renderSort(displayedCards, currentFilter) {
+    if (sortOptions[currentFilter] != undefined) {
+        displayedCards.sort(sortOptions[currentFilter])
+    } else if (filterOptions[currentFilter] != undefined) {
+        displayedCards = displayedCards.filter(filterOptions[currentFilter])
+    }
 }
 
 
@@ -34,7 +44,7 @@ export function CardContainer(props) {
     return (
         <div id="card-container">
             {
-                searchFilter(props.displayedCards)
+                renderSort(props.displayedCards, props.currentFilter)
             }
             {
                 props.displayedCards.map(function(item) {

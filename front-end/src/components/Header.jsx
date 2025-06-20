@@ -1,4 +1,5 @@
 import { enableBoardModal, disableBoardModal } from "./BoardModal"
+import { renderSort } from "./CardContainer"
 import "../styles/Header.css"
 
 
@@ -19,6 +20,11 @@ function onClearSearch(setSearchQuery) {
     }
 }
 
+function onFilterButtonClick(setCurrentFilter, displayedCards) {
+    return function(event) {
+        setCurrentFilter(event.target.innerText)
+    }
+}
 
 export function Header(props) {
     return (
@@ -30,11 +36,11 @@ export function Header(props) {
                 <button id="clear-search" className="searchbar-button search-div-child" onClick={onClearSearch(props.setSearchQuery)}>Clear</button>
             </div>
             <div id="filter-div">
-                <button className="filter-button">All</button>
-                <button className="filter-button">Recent</button>
-                <button className="filter-button">Celebration</button>
-                <button className="filter-button">Thank You</button>
-                <button className="filter-button">Inspiration</button>
+                <button className="filter-button" onClick={onFilterButtonClick(props.setCurrentFilter, props.displayedCards)}>All</button>
+                <button className="filter-button" onClick={onFilterButtonClick(props.setCurrentFilter, props.displayedCards)}>Recent</button>
+                <button className="filter-button" onClick={onFilterButtonClick(props.setCurrentFilter, props.displayedCards)}>Celebration</button>
+                <button className="filter-button" onClick={onFilterButtonClick(props.setCurrentFilter, props.displayedCards)}>Thank You</button>
+                <button className="filter-button" onClick={onFilterButtonClick(props.setCurrentFilter, props.displayedCards)}>Inspiration</button>
             </div>
             <button id="create-a-board" className="filter-button" onClick={onCreateBoard}>Create A New Board</button>
         </>
