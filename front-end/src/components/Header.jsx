@@ -3,16 +3,22 @@ import "../styles/Header.css"
 
 
 function onCreateBoard() {
-    console.log("Creating a new board")
     enableBoardModal()
 }
 
-export function Header() {
+function onKeyDown(setSearchQuery) {
+    return function(event) {
+        setSearchQuery(event.target.value)
+    }
+}
+
+
+export function Header(props) {
     return (
         <>
             <h1>Kudos Board</h1>
             <div id="search-div">
-                <input type="text" id="search" placeholder="Search" className="search-div-child"/>
+                <input type="text" id="search" placeholder="Search" className="search-div-child" onKeyDown={onKeyDown(props.setSearchQuery)} />
                 <button id="search-button" className="searchbar-button search-div-child">Search</button>
                 <button id="clear-search" className="searchbar-button search-div-child">Clear</button>
             </div>

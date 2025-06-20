@@ -31,7 +31,7 @@ export function BoardModal(props) {
 }
 
 function createBoard() {
-    console.log("Creating a board")
+
 }
 
 
