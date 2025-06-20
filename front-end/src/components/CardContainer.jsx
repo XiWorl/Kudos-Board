@@ -9,9 +9,9 @@ const sortOptions = {
 }
 
 const filterOptions = {
-    "Celebration": function(a) { return a.type == "Celebration" },
-    "Thank You": function(a) { return a.type == "Thank You" },
-    "Inspiration": function(a) { return a.type == "Inspiration" },
+    "Celebration": function(a) { return a.category == "Celebration" },
+    "Thank You": function(a) { return a.category == "Thank You" },
+    "Inspiration": function(a) { return a.category == "Inspiration" },
 }
 
 function searchQueryFilter(searchQuery, cardData) {
@@ -24,11 +24,19 @@ function searchQueryFilter(searchQuery, cardData) {
     return false
 }
 
-export function renderSort(displayedCards, currentFilter) {
+export function renderSort(displayedCards, setDisplayedCards, currentFilter) {
+    displayedCards.map(function(card) {
+        card.visible = true
+    })
+
     if (sortOptions[currentFilter] != undefined) {
         displayedCards.sort(sortOptions[currentFilter])
     } else if (filterOptions[currentFilter] != undefined) {
-        displayedCards = displayedCards.filter(filterOptions[currentFilter])
+        displayedCards.map(function(card) {
+            if (filterOptions[currentFilter](card) == false) {
+                card.visible = false
+            }
+        })
     }
 }
 
@@ -44,11 +52,14 @@ export function CardContainer(props) {
     return (
         <div id="card-container">
             {
-                renderSort(props.displayedCards, props.currentFilter)
+                renderSort(props.displayedCards, props.setDisplayedCards, props.currentFilter)
             }
             {
                 props.displayedCards.map(function(item) {
                     if (searchQueryFilter(props.searchQuery, item) == false) {
+                        return
+                    }
+                    if (item.visible == false) {
                         return
                     }
                     return <Card key={item.id} cardBody={item} />
