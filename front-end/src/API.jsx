@@ -1,4 +1,4 @@
-
+const DEFAULT_BOARD_ID = 1
 
 export async function createNewBoard(boardData) {
     try {
@@ -58,6 +58,39 @@ export async function createNewCard(boardId, cardData) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(cardData),
+        })
+
+        const data = await response.json()
+		return data;
+    } catch (error) {
+        console.error('Error posting data:', error)
+    }
+}
+
+export async function deleteCard(cardId) {
+    try {
+		const id = parseInt(cardId)
+        const response = await fetch(`http://localhost:3000/api/boards/${DEFAULT_BOARD_ID}/cards/${id}`, {
+            method: 'DELETE',
+        })
+
+        const data = await response.json()
+		return data;
+    } catch (error) {
+        console.error('Error posting data:', error)
+    }
+}
+
+
+export async function changeUpvote(cardId, action) {
+    try {
+		const id = parseInt(cardId)
+        const response = await fetch(`http://localhost:3000/api/boards/${DEFAULT_BOARD_ID}/cards/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(action),
         })
 
         const data = await response.json()
