@@ -99,6 +99,21 @@
     padding: 10px;
 }
 
+#gifs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#gifs-container img {
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     .board-modal-content {
         margin: 10% auto;

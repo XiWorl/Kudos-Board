@@ -8,7 +8,7 @@ import { enableCardModal } from "./CardModal"
 import { deleteCard } from "../api"
 import { changeUpvote } from "../api"
 import { Link } from "react-router-dom"
-
+import { Footer } from "./Footer"
 
 function onCardDelete(cardId, setCardsDisplayed, cardsDisplayed) {
 	return async function() {
@@ -80,16 +80,17 @@ export function CardContainer() {
 	const boardInfo = location.state || {}
 
 	return (
-		<div>
+		<div id="card-container-div">
 			<div id="main-header">
 				<Link to={"/"} id="back-button">Go Back</Link>
 				<h1>Kudos Board</h1>
 				<h2>{boardInfo.title || 'Title'}</h2>
 				<h3>{boardInfo.category || 'Unknown Category'}</h3>
 			</div>
-			<button onClick={enableCardModal}>Create a Card</button>
+			<button id="create-a-card-button" onClick={enableCardModal}>Create a Card</button>
 			<CardModal boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
 			<Container boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
+			<Footer />
 		</div>
 	)
 

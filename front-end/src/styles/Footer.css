@@ -1,0 +1,16 @@
+/* Footer Styling */
+#main-footer {
+    background-color: var(--text-primary);
+    color: var(--primary-white);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 3px solid var(--primary-teal);
+}
+
+#main-footer p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.9;
+}

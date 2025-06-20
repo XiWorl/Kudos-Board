@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BoardContainer } from './components/BoardContainer'
 import { Header } from './components/Header'
 import { BoardModal } from './components/BoardModal'
-
+import { Footer } from './components/Footer'
 
 import "./styles/App.css"
 
@@ -21,6 +21,7 @@ function App() {
         <BoardModal displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} />
         <BoardContainer displayedCards={displayedCards} setDisplayedCards={setDisplayedCards} searchQuery={searchQuery} currentFilter={currentFilter}/>
       </div>
+      <Footer />
     </>
   )
 }
