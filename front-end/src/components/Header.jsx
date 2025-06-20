@@ -1,4 +1,4 @@
-import { enableBoardModal, disableBoardModal } from "./BoardModal"
+import { enableBoardModal } from "./BoardModal"
 import "../styles/Header.css"
 
 

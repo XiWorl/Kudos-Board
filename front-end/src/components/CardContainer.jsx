@@ -62,7 +62,7 @@ export function CardContainer(props) {
                     if (item.visible == false) {
                         return
                     }
-                    return <Card key={item.id} cardBody={item} />
+                    return <Card key={item.id} cardBody={item} setDisplayedCards={props.setDisplayedCards} displayedCards={props.displayedCards}/>
                 })
             }
         </div>
