@@ -1163,11 +1163,11 @@ export namespace Prisma {
 
   export type BoardGroupByOutputType = {
     id: number
-    title: string | null
+    title: string
     createdAt: Date
-    author: string | null
-    category: string | null
-    imageUrl: string | null
+    author: string
+    category: string
+    imageUrl: string
     _count: BoardCountAggregateOutputType | null
     _avg: BoardAvgAggregateOutputType | null
     _sum: BoardSumAggregateOutputType | null
@@ -1242,11 +1242,11 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      title: string | null
+      title: string
       createdAt: Date
-      author: string | null
-      category: string | null
-      imageUrl: string | null
+      author: string
+      category: string
+      imageUrl: string
     }, ExtArgs["result"]["board"]>
     composites: {}
   }
@@ -1895,7 +1895,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Board.
      */
-    data?: XOR<BoardCreateInput, BoardUncheckedCreateInput>
+    data: XOR<BoardCreateInput, BoardUncheckedCreateInput>
   }
 
   /**
@@ -3288,14 +3288,6 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
   /**
    * Field references
    */
@@ -3365,21 +3357,21 @@ export namespace Prisma {
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
     id?: IntFilter<"Board"> | number
-    title?: StringNullableFilter<"Board"> | string | null
+    title?: StringFilter<"Board"> | string
     createdAt?: DateTimeFilter<"Board"> | Date | string
-    author?: StringNullableFilter<"Board"> | string | null
-    category?: StringNullableFilter<"Board"> | string | null
-    imageUrl?: StringNullableFilter<"Board"> | string | null
+    author?: StringFilter<"Board"> | string
+    category?: StringFilter<"Board"> | string
+    imageUrl?: StringFilter<"Board"> | string
     cards?: CardListRelationFilter
   }
 
   export type BoardOrderByWithRelationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     createdAt?: SortOrder
-    author?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
-    imageUrl?: SortOrderInput | SortOrder
+    author?: SortOrder
+    category?: SortOrder
+    imageUrl?: SortOrder
     cards?: CardOrderByRelationAggregateInput
   }
 
@@ -3388,21 +3380,21 @@ export namespace Prisma {
     AND?: BoardWhereInput | BoardWhereInput[]
     OR?: BoardWhereInput[]
     NOT?: BoardWhereInput | BoardWhereInput[]
-    title?: StringNullableFilter<"Board"> | string | null
+    title?: StringFilter<"Board"> | string
     createdAt?: DateTimeFilter<"Board"> | Date | string
-    author?: StringNullableFilter<"Board"> | string | null
-    category?: StringNullableFilter<"Board"> | string | null
-    imageUrl?: StringNullableFilter<"Board"> | string | null
+    author?: StringFilter<"Board"> | string
+    category?: StringFilter<"Board"> | string
+    imageUrl?: StringFilter<"Board"> | string
     cards?: CardListRelationFilter
   }, "id">
 
   export type BoardOrderByWithAggregationInput = {
     id?: SortOrder
-    title?: SortOrderInput | SortOrder
+    title?: SortOrder
     createdAt?: SortOrder
-    author?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
-    imageUrl?: SortOrderInput | SortOrder
+    author?: SortOrder
+    category?: SortOrder
+    imageUrl?: SortOrder
     _count?: BoardCountOrderByAggregateInput
     _avg?: BoardAvgOrderByAggregateInput
     _max?: BoardMaxOrderByAggregateInput
@@ -3415,11 +3407,11 @@ export namespace Prisma {
     OR?: BoardScalarWhereWithAggregatesInput[]
     NOT?: BoardScalarWhereWithAggregatesInput | BoardScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Board"> | number
-    title?: StringNullableWithAggregatesFilter<"Board"> | string | null
+    title?: StringWithAggregatesFilter<"Board"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
-    author?: StringNullableWithAggregatesFilter<"Board"> | string | null
-    category?: StringNullableWithAggregatesFilter<"Board"> | string | null
-    imageUrl?: StringNullableWithAggregatesFilter<"Board"> | string | null
+    author?: StringWithAggregatesFilter<"Board"> | string
+    category?: StringWithAggregatesFilter<"Board"> | string
+    imageUrl?: StringWithAggregatesFilter<"Board"> | string
   }
 
   export type CardWhereInput = {
@@ -3490,67 +3482,67 @@ export namespace Prisma {
   }
 
   export type BoardCreateInput = {
-    title?: string | null
+    title: string
     createdAt?: Date | string
-    author?: string | null
-    category?: string | null
-    imageUrl?: string | null
+    author: string
+    category: string
+    imageUrl: string
     cards?: CardCreateNestedManyWithoutBoardInput
   }
 
   export type BoardUncheckedCreateInput = {
     id?: number
-    title?: string | null
+    title: string
     createdAt?: Date | string
-    author?: string | null
-    category?: string | null
-    imageUrl?: string | null
+    author: string
+    category: string
+    imageUrl: string
     cards?: CardUncheckedCreateNestedManyWithoutBoardInput
   }
 
   export type BoardUpdateInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
     cards?: CardUpdateManyWithoutBoardNestedInput
   }
 
   export type BoardUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
     cards?: CardUncheckedUpdateManyWithoutBoardNestedInput
   }
 
   export type BoardCreateManyInput = {
     id?: number
-    title?: string | null
+    title: string
     createdAt?: Date | string
-    author?: string | null
-    category?: string | null
-    imageUrl?: string | null
+    author: string
+    category: string
+    imageUrl: string
   }
 
   export type BoardUpdateManyMutationInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type BoardUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type CardCreateInput = {
@@ -3630,10 +3622,10 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3642,7 +3634,7 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -3660,11 +3652,6 @@ export namespace Prisma {
     every?: CardWhereInput
     some?: CardWhereInput
     none?: CardWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type CardOrderByRelationAggregateInput = {
@@ -3722,10 +3709,10 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3734,10 +3721,10 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -3752,21 +3739,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type BoardScalarRelationFilter = {
@@ -3816,24 +3788,6 @@ export namespace Prisma {
     boardId?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type CardCreateNestedManyWithoutBoardInput = {
     create?: XOR<CardCreateWithoutBoardInput, CardUncheckedCreateWithoutBoardInput> | CardCreateWithoutBoardInput[] | CardUncheckedCreateWithoutBoardInput[]
     connectOrCreate?: CardCreateOrConnectWithoutBoardInput | CardCreateOrConnectWithoutBoardInput[]
@@ -3848,8 +3802,8 @@ export namespace Prisma {
     connect?: CardWhereUniqueInput | CardWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -3898,10 +3852,6 @@ export namespace Prisma {
     connect?: BoardWhereUniqueInput
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
   export type BoardUpdateOneRequiredWithoutCardsNestedInput = {
     create?: XOR<BoardCreateWithoutCardsInput, BoardUncheckedCreateWithoutCardsInput>
     connectOrCreate?: BoardCreateOrConnectWithoutCardsInput
@@ -3921,10 +3871,10 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -3932,7 +3882,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -3973,62 +3923,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
-
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4044,6 +3938,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type CardCreateWithoutBoardInput = {
@@ -4103,20 +4011,20 @@ export namespace Prisma {
   }
 
   export type BoardCreateWithoutCardsInput = {
-    title?: string | null
+    title: string
     createdAt?: Date | string
-    author?: string | null
-    category?: string | null
-    imageUrl?: string | null
+    author: string
+    category: string
+    imageUrl: string
   }
 
   export type BoardUncheckedCreateWithoutCardsInput = {
     id?: number
-    title?: string | null
+    title: string
     createdAt?: Date | string
-    author?: string | null
-    category?: string | null
-    imageUrl?: string | null
+    author: string
+    category: string
+    imageUrl: string
   }
 
   export type BoardCreateOrConnectWithoutCardsInput = {
@@ -4136,20 +4044,20 @@ export namespace Prisma {
   }
 
   export type BoardUpdateWithoutCardsInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type BoardUncheckedUpdateWithoutCardsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type CardCreateManyBoardInput = {

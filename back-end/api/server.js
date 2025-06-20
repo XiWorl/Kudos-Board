@@ -33,6 +33,7 @@ function checkIfCardIsValid(data) {
 }
 
 
+// GET
 server.get("/api/boards", async (req, res, next) => {
 	try {
 		const data = await prisma.board.findMany()
@@ -48,7 +49,7 @@ server.get("/api/boards", async (req, res, next) => {
 server.get("/api/boards/:boardId", async (req, res, next) => {
 	try {
 		const id = parseInt(req.params.boardId)
-		const data = await prisma.board.findUnique({ where: { id: id } })
+		const data = await prisma.board.findUnique({ where: {id: id} })
 		res.status(200).json(data)
 		return
 
@@ -73,7 +74,7 @@ server.get("/api/cards", async (req, res, next) => {
 server.get("/api/cards/:cardId", async (req, res, next) => {
 	try {
 		const id = parseInt(req.params.cardId)
-		const data = await prisma.card.findUnique({ where: { id: id } })
+		const data = await prisma.card.findUnique({ where: {id: id} })
 		res.status(200).json(data)
 		return
 
@@ -83,6 +84,7 @@ server.get("/api/cards/:cardId", async (req, res, next) => {
 	}
 })
 
+// POST
 server.post("/api/boards", async (req, res, next) => {
 	const newBoard = req.body
 
@@ -103,7 +105,7 @@ server.post("/api/boards", async (req, res, next) => {
 
 server.post("/api/boards/:boardId/cards", async (req, res, next) => {
 	const newCard = req.body
-	
+
 	try {
 		if (checkIfCardIsValid(newCard) == true) {
 			const data = await prisma.card.create({ data: newCard })
@@ -113,6 +115,32 @@ server.post("/api/boards/:boardId/cards", async (req, res, next) => {
 			res.status(400).json({ message: "Invalid card data" })
 			return
 		}
+	} catch (err) {
+		next(err)
+		return
+	}
+})
+
+
+// DELETE
+server.delete("/api/boards/:boardId", async (req, res, next) => {
+	try {
+		const id = parseInt(req.params.boardId)
+		const deleted = await prisma.board.delete({ where:{ id: id  }})
+		res.status(200).json(deleted)
+		return
+	} catch (err) {
+		next(err)
+		return
+	}
+})
+
+server.delete("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
+	try {
+		const id = parseInt(req.params.cardId)
+		const deleted = await prisma.card.delete({ where:{id: id}})
+		res.status(200).json(deleted)
+		return
 	} catch (err) {
 		next(err)
 		return
