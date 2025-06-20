@@ -1,4 +1,4 @@
-import { Card } from "./Card"
+import { Board } from "./Board"
 import { useEffect } from "react"
 import { getBoards } from "../api"
 import "../styles/CardContainer.css"
@@ -41,7 +41,7 @@ export function renderSort(displayedCards, setDisplayedCards, currentFilter) {
 }
 
 
-export function CardContainer(props) {
+export function BoardContainer(props) {
     useEffect(function() {
         const result = getBoards()
         result.then(data => {
@@ -62,7 +62,7 @@ export function CardContainer(props) {
                     if (item.visible == false) {
                         return
                     }
-                    return <Card key={item.id} cardBody={item} setDisplayedCards={props.setDisplayedCards} displayedCards={props.displayedCards}/>
+                    return <Board key={item.id} cardBody={item} setDisplayedCards={props.setDisplayedCards} displayedCards={props.displayedCards}/>
                 })
             }
         </div>

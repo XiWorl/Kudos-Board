@@ -6,6 +6,7 @@ function ViewBoardButton(props) {
     return function() {
     }
 }
+
 function DeleteBoardButton(props) {
     return function() {
         deleteBoard(props.cardBody.id)
@@ -14,7 +15,7 @@ function DeleteBoardButton(props) {
 }
 
 
-export function Card(props) {
+export function Board(props) {
     return (
         <div className="card">
             <div className="card-information">
