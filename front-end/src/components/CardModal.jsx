@@ -4,12 +4,17 @@ import "../styles/BoardModal.css"
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-function disablCardModal() {
+function disableCardModal() {
     document.getElementById("card-modal").style.display = "none"
 }
 
 export function enableCardModal() {
     document.getElementById("card-modal").style.display = "block"
+    document.getElementById("card-title").value = ""
+    document.getElementById("card-description").value = ""
+    document.getElementById("card-gif-url").value = ""
+    document.getElementById("card-gif-search").value = ""
+    document.getElementById("card-owner").value = ""
 }
 
 function onGIFImageClicked(gifURL, setDisplayedGIFs) {
@@ -38,14 +43,13 @@ function createCard(boardId, cardsDisplayed, setCardsDisplayed) {
         const gifSearch = document.getElementById("card-gif-search").value
         const owner = document.getElementById("card-owner").value
 
-        //TODO: try catch on parseInt
         if (title === "" || description === "" ||  gifUrl === "") {
             alert("Please fill in all required fields")
             return
         }
         const cardData = await createNewCard(boardId, { "title": title, "message": description, "gifUrl": gifUrl, "upvotes": 0, "boardId": parseInt(boardId), "author": owner})
         setCardsDisplayed([...cardsDisplayed, cardData])
-        disablCardModal()
+        disableCardModal()
     }
 }
 
@@ -68,7 +72,7 @@ export function CardModal(props) {
     return (
         <div id="card-modal" className="modal">
             <div className="board-modal-content">
-                <span className="close" onClick={disablCardModal}>&times;</span>
+                <span className="close" onClick={disableCardModal}>&times;</span>
                 <h2>Create a New Card</h2>
                 <input type="text" id="card-title" placeholder="Enter card title" />
                 <input type="text" id="card-description" placeholder="Enter card description" />
