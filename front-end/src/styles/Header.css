@@ -6,6 +6,9 @@
 #create-a-board {
 	margin-bottom: 10px;
 }
+h1 {
+	color: black;
+}
 
 #filter-div {
 	display: flex;
