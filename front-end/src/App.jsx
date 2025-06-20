@@ -11,7 +11,7 @@ import "./styles/App.css"
 
 function App() {
   const [displayedCards, setDisplayedCards] = useState([])
-  const [searchQuery, setSearchQuery] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
 
   return (
     <>

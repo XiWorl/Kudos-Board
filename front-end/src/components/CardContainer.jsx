@@ -34,7 +34,13 @@ export function CardContainer(props) {
     return (
         <div id="card-container">
             {
+                searchFilter(props.displayedCards)
+            }
+            {
                 props.displayedCards.map(function(item) {
+                    if (searchQueryFilter(props.searchQuery, item) == false) {
+                        return
+                    }
                     return <Card key={item.id} cardBody={item} />
                 })
             }

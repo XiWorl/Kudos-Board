@@ -6,9 +6,16 @@ function onCreateBoard() {
     enableBoardModal()
 }
 
-function onKeyDown(setSearchQuery) {
+function onChange(setSearchQuery) {
     return function(event) {
         setSearchQuery(event.target.value)
+    }
+}
+
+function onClearSearch(setSearchQuery) {
+    return function() {
+        setSearchQuery("")
+        document.getElementById("search").value = ""
     }
 }
 
@@ -18,9 +25,9 @@ export function Header(props) {
         <>
             <h1>Kudos Board</h1>
             <div id="search-div">
-                <input type="text" id="search" placeholder="Search" className="search-div-child" onKeyDown={onKeyDown(props.setSearchQuery)} />
+                <input type="text" id="search" placeholder="Search" className="search-div-child" onChange={onChange(props.setSearchQuery)} />
                 <button id="search-button" className="searchbar-button search-div-child">Search</button>
-                <button id="clear-search" className="searchbar-button search-div-child">Clear</button>
+                <button id="clear-search" className="searchbar-button search-div-child" onClick={onClearSearch(props.setSearchQuery)}>Clear</button>
             </div>
             <div id="filter-div">
                 <button className="filter-button">All</button>
