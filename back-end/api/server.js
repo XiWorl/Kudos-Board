@@ -1,7 +1,6 @@
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
-const modelHelper = require("./db-model-prisma")
 const { PrismaClient } = require('../generated/prisma')
 const prisma = new PrismaClient()
 
@@ -14,7 +13,6 @@ server.use(cors())
 function checkIfBoardIsValid(data) {
 	const isBoardValid = (
 		data.title !== undefined &&
-		data.author !== undefined &&
 		data.category !== undefined &&
 		data.imageUrl !== undefined
 	)
@@ -24,7 +22,7 @@ function checkIfBoardIsValid(data) {
 function checkIfCardIsValid(data) {
 	const isCardValid = (
 		data.message !== undefined &&
-		data.author !== undefined &&
+		data.title !== undefined &&
 		data.gifUrl !== undefined &&
 		data.upvotes !== undefined &&
 		data.boardId !== undefined
@@ -150,7 +148,7 @@ server.delete("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
 // PATCH
 server.patch("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
 	const action = req.body["action"]
-	
+
 	if (action !== undefined) {
 		try {
 			const id = parseInt(req.params.cardId)

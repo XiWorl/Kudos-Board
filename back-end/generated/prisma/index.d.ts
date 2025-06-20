@@ -1165,7 +1165,7 @@ export namespace Prisma {
     id: number
     title: string
     createdAt: Date
-    author: string
+    author: string | null
     category: string
     imageUrl: string
     _count: BoardCountAggregateOutputType | null
@@ -1244,7 +1244,7 @@ export namespace Prisma {
       id: number
       title: string
       createdAt: Date
-      author: string
+      author: string | null
       category: string
       imageUrl: string
     }, ExtArgs["result"]["board"]>
@@ -2134,6 +2134,7 @@ export namespace Prisma {
   export type CardMinAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    title: string | null
     message: string | null
     author: string | null
     gifUrl: string | null
@@ -2144,6 +2145,7 @@ export namespace Prisma {
   export type CardMaxAggregateOutputType = {
     id: number | null
     createdAt: Date | null
+    title: string | null
     message: string | null
     author: string | null
     gifUrl: string | null
@@ -2154,6 +2156,7 @@ export namespace Prisma {
   export type CardCountAggregateOutputType = {
     id: number
     createdAt: number
+    title: number
     message: number
     author: number
     gifUrl: number
@@ -2178,6 +2181,7 @@ export namespace Prisma {
   export type CardMinAggregateInputType = {
     id?: true
     createdAt?: true
+    title?: true
     message?: true
     author?: true
     gifUrl?: true
@@ -2188,6 +2192,7 @@ export namespace Prisma {
   export type CardMaxAggregateInputType = {
     id?: true
     createdAt?: true
+    title?: true
     message?: true
     author?: true
     gifUrl?: true
@@ -2198,6 +2203,7 @@ export namespace Prisma {
   export type CardCountAggregateInputType = {
     id?: true
     createdAt?: true
+    title?: true
     message?: true
     author?: true
     gifUrl?: true
@@ -2295,8 +2301,9 @@ export namespace Prisma {
   export type CardGroupByOutputType = {
     id: number
     createdAt: Date
+    title: string
     message: string
-    author: string
+    author: string | null
     gifUrl: string
     upvotes: number
     boardId: number
@@ -2324,6 +2331,7 @@ export namespace Prisma {
   export type CardSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    title?: boolean
     message?: boolean
     author?: boolean
     gifUrl?: boolean
@@ -2335,6 +2343,7 @@ export namespace Prisma {
   export type CardSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    title?: boolean
     message?: boolean
     author?: boolean
     gifUrl?: boolean
@@ -2346,6 +2355,7 @@ export namespace Prisma {
   export type CardSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     createdAt?: boolean
+    title?: boolean
     message?: boolean
     author?: boolean
     gifUrl?: boolean
@@ -2357,6 +2367,7 @@ export namespace Prisma {
   export type CardSelectScalar = {
     id?: boolean
     createdAt?: boolean
+    title?: boolean
     message?: boolean
     author?: boolean
     gifUrl?: boolean
@@ -2364,7 +2375,7 @@ export namespace Prisma {
     boardId?: boolean
   }
 
-  export type CardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "message" | "author" | "gifUrl" | "upvotes" | "boardId", ExtArgs["result"]["card"]>
+  export type CardOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "createdAt" | "title" | "message" | "author" | "gifUrl" | "upvotes" | "boardId", ExtArgs["result"]["card"]>
   export type CardInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     board?: boolean | BoardDefaultArgs<ExtArgs>
   }
@@ -2383,8 +2394,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       createdAt: Date
+      title: string
       message: string
-      author: string
+      author: string | null
       gifUrl: string
       upvotes: number
       boardId: number
@@ -2814,6 +2826,7 @@ export namespace Prisma {
   interface CardFieldRefs {
     readonly id: FieldRef<"Card", 'Int'>
     readonly createdAt: FieldRef<"Card", 'DateTime'>
+    readonly title: FieldRef<"Card", 'String'>
     readonly message: FieldRef<"Card", 'String'>
     readonly author: FieldRef<"Card", 'String'>
     readonly gifUrl: FieldRef<"Card", 'String'>
@@ -3262,6 +3275,7 @@ export namespace Prisma {
   export const CardScalarFieldEnum: {
     id: 'id',
     createdAt: 'createdAt',
+    title: 'title',
     message: 'message',
     author: 'author',
     gifUrl: 'gifUrl',
@@ -3286,6 +3300,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -3359,7 +3381,7 @@ export namespace Prisma {
     id?: IntFilter<"Board"> | number
     title?: StringFilter<"Board"> | string
     createdAt?: DateTimeFilter<"Board"> | Date | string
-    author?: StringFilter<"Board"> | string
+    author?: StringNullableFilter<"Board"> | string | null
     category?: StringFilter<"Board"> | string
     imageUrl?: StringFilter<"Board"> | string
     cards?: CardListRelationFilter
@@ -3369,7 +3391,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
-    author?: SortOrder
+    author?: SortOrderInput | SortOrder
     category?: SortOrder
     imageUrl?: SortOrder
     cards?: CardOrderByRelationAggregateInput
@@ -3382,7 +3404,7 @@ export namespace Prisma {
     NOT?: BoardWhereInput | BoardWhereInput[]
     title?: StringFilter<"Board"> | string
     createdAt?: DateTimeFilter<"Board"> | Date | string
-    author?: StringFilter<"Board"> | string
+    author?: StringNullableFilter<"Board"> | string | null
     category?: StringFilter<"Board"> | string
     imageUrl?: StringFilter<"Board"> | string
     cards?: CardListRelationFilter
@@ -3392,7 +3414,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     createdAt?: SortOrder
-    author?: SortOrder
+    author?: SortOrderInput | SortOrder
     category?: SortOrder
     imageUrl?: SortOrder
     _count?: BoardCountOrderByAggregateInput
@@ -3409,7 +3431,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Board"> | number
     title?: StringWithAggregatesFilter<"Board"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Board"> | Date | string
-    author?: StringWithAggregatesFilter<"Board"> | string
+    author?: StringNullableWithAggregatesFilter<"Board"> | string | null
     category?: StringWithAggregatesFilter<"Board"> | string
     imageUrl?: StringWithAggregatesFilter<"Board"> | string
   }
@@ -3420,8 +3442,9 @@ export namespace Prisma {
     NOT?: CardWhereInput | CardWhereInput[]
     id?: IntFilter<"Card"> | number
     createdAt?: DateTimeFilter<"Card"> | Date | string
+    title?: StringFilter<"Card"> | string
     message?: StringFilter<"Card"> | string
-    author?: StringFilter<"Card"> | string
+    author?: StringNullableFilter<"Card"> | string | null
     gifUrl?: StringFilter<"Card"> | string
     upvotes?: IntFilter<"Card"> | number
     boardId?: IntFilter<"Card"> | number
@@ -3431,8 +3454,9 @@ export namespace Prisma {
   export type CardOrderByWithRelationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    title?: SortOrder
     message?: SortOrder
-    author?: SortOrder
+    author?: SortOrderInput | SortOrder
     gifUrl?: SortOrder
     upvotes?: SortOrder
     boardId?: SortOrder
@@ -3445,8 +3469,9 @@ export namespace Prisma {
     OR?: CardWhereInput[]
     NOT?: CardWhereInput | CardWhereInput[]
     createdAt?: DateTimeFilter<"Card"> | Date | string
+    title?: StringFilter<"Card"> | string
     message?: StringFilter<"Card"> | string
-    author?: StringFilter<"Card"> | string
+    author?: StringNullableFilter<"Card"> | string | null
     gifUrl?: StringFilter<"Card"> | string
     upvotes?: IntFilter<"Card"> | number
     boardId?: IntFilter<"Card"> | number
@@ -3456,8 +3481,9 @@ export namespace Prisma {
   export type CardOrderByWithAggregationInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    title?: SortOrder
     message?: SortOrder
-    author?: SortOrder
+    author?: SortOrderInput | SortOrder
     gifUrl?: SortOrder
     upvotes?: SortOrder
     boardId?: SortOrder
@@ -3474,8 +3500,9 @@ export namespace Prisma {
     NOT?: CardScalarWhereWithAggregatesInput | CardScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Card"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Card"> | Date | string
+    title?: StringWithAggregatesFilter<"Card"> | string
     message?: StringWithAggregatesFilter<"Card"> | string
-    author?: StringWithAggregatesFilter<"Card"> | string
+    author?: StringNullableWithAggregatesFilter<"Card"> | string | null
     gifUrl?: StringWithAggregatesFilter<"Card"> | string
     upvotes?: IntWithAggregatesFilter<"Card"> | number
     boardId?: IntWithAggregatesFilter<"Card"> | number
@@ -3484,7 +3511,7 @@ export namespace Prisma {
   export type BoardCreateInput = {
     title: string
     createdAt?: Date | string
-    author: string
+    author?: string | null
     category: string
     imageUrl: string
     cards?: CardCreateNestedManyWithoutBoardInput
@@ -3494,7 +3521,7 @@ export namespace Prisma {
     id?: number
     title: string
     createdAt?: Date | string
-    author: string
+    author?: string | null
     category: string
     imageUrl: string
     cards?: CardUncheckedCreateNestedManyWithoutBoardInput
@@ -3503,7 +3530,7 @@ export namespace Prisma {
   export type BoardUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     cards?: CardUpdateManyWithoutBoardNestedInput
@@ -3513,7 +3540,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
     cards?: CardUncheckedUpdateManyWithoutBoardNestedInput
@@ -3523,7 +3550,7 @@ export namespace Prisma {
     id?: number
     title: string
     createdAt?: Date | string
-    author: string
+    author?: string | null
     category: string
     imageUrl: string
   }
@@ -3531,7 +3558,7 @@ export namespace Prisma {
   export type BoardUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
   }
@@ -3540,15 +3567,16 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type CardCreateInput = {
     createdAt?: Date | string
+    title: string
     message: string
-    author: string
+    author?: string | null
     gifUrl: string
     upvotes?: number
     board: BoardCreateNestedOneWithoutCardsInput
@@ -3557,8 +3585,9 @@ export namespace Prisma {
   export type CardUncheckedCreateInput = {
     id?: number
     createdAt?: Date | string
+    title: string
     message: string
-    author: string
+    author?: string | null
     gifUrl: string
     upvotes?: number
     boardId: number
@@ -3566,8 +3595,9 @@ export namespace Prisma {
 
   export type CardUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
     board?: BoardUpdateOneRequiredWithoutCardsNestedInput
@@ -3576,8 +3606,9 @@ export namespace Prisma {
   export type CardUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
     boardId?: IntFieldUpdateOperationsInput | number
@@ -3586,8 +3617,9 @@ export namespace Prisma {
   export type CardCreateManyInput = {
     id?: number
     createdAt?: Date | string
+    title: string
     message: string
-    author: string
+    author?: string | null
     gifUrl: string
     upvotes?: number
     boardId: number
@@ -3595,8 +3627,9 @@ export namespace Prisma {
 
   export type CardUpdateManyMutationInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
   }
@@ -3604,8 +3637,9 @@ export namespace Prisma {
   export type CardUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
     boardId?: IntFieldUpdateOperationsInput | number
@@ -3648,10 +3682,30 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type CardListRelationFilter = {
     every?: CardWhereInput
     some?: CardWhereInput
     none?: CardWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type CardOrderByRelationAggregateInput = {
@@ -3741,6 +3795,24 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type BoardScalarRelationFilter = {
     is?: BoardWhereInput
     isNot?: BoardWhereInput
@@ -3749,6 +3821,7 @@ export namespace Prisma {
   export type CardCountOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     author?: SortOrder
     gifUrl?: SortOrder
@@ -3765,6 +3838,7 @@ export namespace Prisma {
   export type CardMaxOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     author?: SortOrder
     gifUrl?: SortOrder
@@ -3775,6 +3849,7 @@ export namespace Prisma {
   export type CardMinOrderByAggregateInput = {
     id?: SortOrder
     createdAt?: SortOrder
+    title?: SortOrder
     message?: SortOrder
     author?: SortOrder
     gifUrl?: SortOrder
@@ -3808,6 +3883,10 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type CardUpdateManyWithoutBoardNestedInput = {
@@ -3896,6 +3975,20 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -3954,10 +4047,39 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type CardCreateWithoutBoardInput = {
     createdAt?: Date | string
+    title: string
     message: string
-    author: string
+    author?: string | null
     gifUrl: string
     upvotes?: number
   }
@@ -3965,8 +4087,9 @@ export namespace Prisma {
   export type CardUncheckedCreateWithoutBoardInput = {
     id?: number
     createdAt?: Date | string
+    title: string
     message: string
-    author: string
+    author?: string | null
     gifUrl: string
     upvotes?: number
   }
@@ -4003,8 +4126,9 @@ export namespace Prisma {
     NOT?: CardScalarWhereInput | CardScalarWhereInput[]
     id?: IntFilter<"Card"> | number
     createdAt?: DateTimeFilter<"Card"> | Date | string
+    title?: StringFilter<"Card"> | string
     message?: StringFilter<"Card"> | string
-    author?: StringFilter<"Card"> | string
+    author?: StringNullableFilter<"Card"> | string | null
     gifUrl?: StringFilter<"Card"> | string
     upvotes?: IntFilter<"Card"> | number
     boardId?: IntFilter<"Card"> | number
@@ -4013,7 +4137,7 @@ export namespace Prisma {
   export type BoardCreateWithoutCardsInput = {
     title: string
     createdAt?: Date | string
-    author: string
+    author?: string | null
     category: string
     imageUrl: string
   }
@@ -4022,7 +4146,7 @@ export namespace Prisma {
     id?: number
     title: string
     createdAt?: Date | string
-    author: string
+    author?: string | null
     category: string
     imageUrl: string
   }
@@ -4046,7 +4170,7 @@ export namespace Prisma {
   export type BoardUpdateWithoutCardsInput = {
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
   }
@@ -4055,7 +4179,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     category?: StringFieldUpdateOperationsInput | string
     imageUrl?: StringFieldUpdateOperationsInput | string
   }
@@ -4063,16 +4187,18 @@ export namespace Prisma {
   export type CardCreateManyBoardInput = {
     id?: number
     createdAt?: Date | string
+    title: string
     message: string
-    author: string
+    author?: string | null
     gifUrl: string
     upvotes?: number
   }
 
   export type CardUpdateWithoutBoardInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
   }
@@ -4080,8 +4206,9 @@ export namespace Prisma {
   export type CardUncheckedUpdateWithoutBoardInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
   }
@@ -4089,8 +4216,9 @@ export namespace Prisma {
   export type CardUncheckedUpdateManyWithoutBoardInput = {
     id?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
-    author?: StringFieldUpdateOperationsInput | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
     gifUrl?: StringFieldUpdateOperationsInput | string
     upvotes?: IntFieldUpdateOperationsInput | number
   }
