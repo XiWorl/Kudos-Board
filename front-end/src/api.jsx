@@ -100,3 +100,4 @@ export async function changeUpvote(cardId, action) {
         console.error('Error posting data:', error)
     }
 }
+
