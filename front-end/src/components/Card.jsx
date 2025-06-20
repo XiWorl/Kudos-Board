@@ -17,9 +17,9 @@ export function Card(props) {
     return (
         <div className="card">
             <div className="card-information">
-                <img src="#" alt="" />
-                <h2 className="card-text">{props.title}</h2>
-                <h3 className="card-text">{props.type}</h3>
+                <img src={props.cardBody.imageUrl} alt={props.cardBody.title} />
+                <h2 className="card-text">{props.cardBody.title}</h2>
+                <h3 className="card-text">{props.cardBody.category}</h3>
             </div>
 
             <div className="card-interactables">

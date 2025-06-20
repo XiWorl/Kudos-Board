@@ -1,4 +1,6 @@
 import { Card } from "./Card"
+import { useEffect } from "react"
+import { getBoards } from "../api"
 import "../styles/CardContainer.css"
 
 let testData = [
@@ -7,15 +9,35 @@ let testData = [
     {id: 3, title: "Title", type: "Celebration", author: "Johnny"},
 ]
 
+function searchQueryFilter(searchQuery, cardData) {
+    if (searchQuery == "" || searchQuery == " ") {
+        return true
+    }
+    if (cardData.title.toLowerCase().includes(searchQuery.toLowerCase())) {
+        return true
+    }
+    return false
+}
+function searchFilter(cardData) {
 
+}
 
 
 export function CardContainer(props) {
+    useEffect(function() {
+        const result = getBoards()
+        result.then(data => {
+            props.setDisplayedCards(data)
+        })
+    }, [])
+
     return (
         <div id="card-container">
-            {testData.map(function(item) {
-                return <Card key={item.id}title={item.title} type={item.type} author={item.author} />
-            })}
+            {
+                props.displayedCards.map(function(item) {
+                    return <Card key={item.id} cardBody={item} />
+                })
+            }
         </div>
     )
 }
