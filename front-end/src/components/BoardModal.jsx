@@ -13,7 +13,7 @@ export function BoardModal(props) {
                 </div>
                 <div>
                     <h3>Category</h3>
-                    <select id="board-category">
+                    <select id="board-category" required>
                         <option value="Select a Category">Select a category</option>
                         <option value="Celebration">Celebration</option>
                         <option value="Thank You">Thank You</option>
@@ -24,11 +24,16 @@ export function BoardModal(props) {
                     <h3>Author</h3>
                     <input type="text" id="board-Author"/>
                 </div>
-                <button>Create a Board</button>
+                <button onClick={createBoard}>Create a Board</button>
             </div>
         </div>
     )
 }
+
+function createBoard() {
+    console.log("Creating a board")
+}
+
 
 export function enableBoardModal() {
     document.getElementById("board-modal").style.display = "block"
