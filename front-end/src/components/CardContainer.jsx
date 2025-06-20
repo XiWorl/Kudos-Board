@@ -1,5 +1,5 @@
 import "../styles/CardContainer.css"
-
+import { CardModal } from "./CardModal"
 
 
 function Card() {
@@ -17,6 +17,7 @@ function Card() {
 function Container() {
   return (
     <div className="container">
+		<Card />
 
 	</div>
   )
@@ -30,6 +31,7 @@ export function CardContainer() {
 		<h1>Kudos Board</h1>
 		<h2>Title</h2>
 		<button>Create a Card</button>
+		<CardModal />
 		<Container />
 	</>
   )
