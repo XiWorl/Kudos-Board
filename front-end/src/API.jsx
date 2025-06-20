@@ -39,3 +39,13 @@ export async function getBoards() {
         console.error('Error retrieving data:', error)
     }
 }
+
+export async function getCardsFromBoard(boardId) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/boards/${boardId}/cards`)
+        const data = await response.json()
+		return data
+    } catch (error) {
+        console.error('Error retrieving data:', error)
+    }
+}

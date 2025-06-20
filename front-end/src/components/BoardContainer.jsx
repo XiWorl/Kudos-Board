@@ -50,7 +50,7 @@ export function BoardContainer(props) {
     }, [])
 
     return (
-        <div id="card-container">
+        <div id="board-container" className="container">
             {
                 renderSort(props.displayedCards, props.setDisplayedCards, props.currentFilter)
             }
