@@ -6,13 +6,32 @@ let testData = [
     {id: 3, title: "Title", type: "Celebration", author: "Johnny"},
 ]
 
+function ViewBoardButton(props) {
+    return (
+        <button onClick={props.onClick}>View Board</button>
+    )
+}
+function DeleteBoardButton(props) {
+    return (
+        <button onClick={props.onClick}>Delete Board</button>
+    )
+}
+
 function Card(props) {
     return (
-        <div>
-            <h1>{props.title}</h1>
-            <h2>{props.type}</h2>
-            <h3>{props.author}</h3>
-        </div>
+        <>
+            <div className="card-information">
+                <img src="#" alt="" />
+                <h1>{props.title}</h1>
+                <h2>{props.type}</h2>
+                <h3>{props.author}</h3>
+            </div>
+
+            <div className="card-interactables">
+                <ViewBoardButton />
+                <DeleteBoardButton />
+            </div>
+        </>
     )
 }
 
