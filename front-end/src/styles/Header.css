@@ -1,0 +1,22 @@
+.search-div-child {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#create-a-board {
+	margin-bottom: 10px;
+}
+
+#filter-div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+
+.filter-button {
+	margin-left: 10px;
+	margin-right: 10px;
+}

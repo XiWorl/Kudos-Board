@@ -19,19 +19,18 @@ function DeleteBoardButton(props) {
 
 function Card(props) {
     return (
-        <>
+        <div className="card">
             <div className="card-information">
                 <img src="#" alt="" />
-                <h1>{props.title}</h1>
-                <h2>{props.type}</h2>
-                <h3>{props.author}</h3>
+                <h2 className="card-text">{props.title}</h2>
+                <h3 className="card-text">{props.type}</h3>
             </div>
 
             <div className="card-interactables">
                 <ViewBoardButton />
                 <DeleteBoardButton />
             </div>
-        </>
+        </div>
     )
 }
 

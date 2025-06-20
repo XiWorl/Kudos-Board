@@ -1,11 +1,13 @@
+import "../styles/Header.css"
+
 export function Header() {
     return (
         <>
             <h1>Kudos Board</h1>
             <div id="search-div">
-                <input type="text" id="search" placeholder="Search" />
-                <button id="search-button" className="searchbar-button">Search</button>
-                <button id="clear-search" className="searchbar-button">Clear</button>
+                <input type="text" id="search" placeholder="Search" className="search-div-child"/>
+                <button id="search-button" className="searchbar-button search-div-child">Search</button>
+                <button id="clear-search" className="searchbar-button search-div-child">Clear</button>
             </div>
             <div id="filter-div">
                 <button className="filter-button">All</button>
