@@ -6,7 +6,12 @@ import { useNavigate } from "react-router-dom"
 function ViewBoardButton(props) {
     const navigate = useNavigate();
     return function() {
-        navigate(`/boards/${props.cardBody.id}/cards`);
+        navigate(`/boards/${props.cardBody.id}/cards`, {
+            state: {
+                title: props.cardBody.title,
+                category: props.cardBody.category,
+            }
+        });
     }
 }
 

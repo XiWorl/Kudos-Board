@@ -1,12 +1,13 @@
 import "../styles/CardContainer.css"
 import { CardModal } from "./CardModal"
 import { getCardsFromBoard } from "../api"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { useState } from "react"
 import { useEffect } from "react"
 import { enableCardModal } from "./CardModal"
 import { deleteCard } from "../api"
 import { changeUpvote } from "../api"
+import { Link } from "react-router-dom"
 
 
 function onCardDelete(cardId, setCardsDisplayed, cardsDisplayed) {
@@ -47,6 +48,7 @@ function Card(props) {
 			<h2>{props.cardBody.title}</h2>
 			<h3>{props.cardBody.message}</h3>
 			<h3>{props.cardBody.author}</h3>
+			<img className="card-gif" src={props.cardBody.gifUrl} alt="" />
 			<button onClick={onCardUpvote(props.cardBody, props.setCardsDisplayed, props.cardsDisplayed)}>Upvotes: {props.cardBody.upvotes}</button>
 			<button onClick={onCardDelete(props.cardBody.id, props.setCardsDisplayed, props.cardsDisplayed)}>Delete</button>
 		</div>
@@ -79,15 +81,22 @@ function Container(props) {
 export function CardContainer() {
 	const [cardsDisplayed, setCardsDisplayed] = useState([])
 	const { boardId } = useParams()
+	const location = useLocation()
+
+	const boardInfo = location.state || {}
 
 	return (
-		<>
-			<h1>Kudos Board</h1>
-			<h2>Title</h2>
+		<div>
+			<div id="main-header">
+				<Link to={"/"} id="back-button">HERE</Link>
+				<h1>Kudos Board</h1>
+				<h2>{boardInfo.title || 'Title'}</h2>
+				<h3>{boardInfo.category || 'Unknown Category'}</h3>
+			</div>
 			<button onClick={enableCardModal}>Create a Card</button>
 			<CardModal boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
 			<Container boardId={boardId} cardsDisplayed={cardsDisplayed} setCardsDisplayed={setCardsDisplayed}/>
-		</>
+		</div>
 	)
 
 }
