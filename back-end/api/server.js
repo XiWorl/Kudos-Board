@@ -13,8 +13,7 @@ server.use(cors())
 function checkIfBoardIsValid(data) {
 	const isBoardValid = (
 		data.title !== undefined &&
-		data.category !== undefined &&
-		data.imageUrl !== undefined
+		data.category !== undefined
 	)
 	return isBoardValid
 }
@@ -101,6 +100,8 @@ server.post("/api/boards", async (req, res, next) => {
 
 	try {
 		if (checkIfBoardIsValid(newBoard) == true) {
+			const image = await fetch("https://picsum.photos/200/300")
+			newBoard.imageUrl = image.url
 			const data = await prisma.board.create({ data: newBoard })
 			res.status(201).json(data)
 			return
@@ -194,13 +195,13 @@ server.patch("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
 	next({ message: "Invalid action", status: 400 })
 })
 
-//TODO: name all card id's "cardid" and board id's "boardid"
+
 
 
 // Error handling middleware
 server.use((err, req, res, next) => {
 	const { message, status = 500 } = err
-	res.status(status).json({ message }) // Unsafe in prod
+	res.status(status).json({ message })
 })
 
 module.exports = server

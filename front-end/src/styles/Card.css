@@ -7,6 +7,25 @@
     transition: box-shadow 0.3s ease;
     transition: transform 0.3s ease;
     border-radius: 10px;
+    align-items: center;
+}
+
+.card-gif {
+    height: 200px;
+    width: 200px;
+}
+
+#create-a-card-button {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#main-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+    margin: 0px;
 }
 
 .card-information img {
