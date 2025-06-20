@@ -1,8 +1,9 @@
 const DEFAULT_BOARD_ID = 1
+const baseURL = import.meta.env.VITE_RENDER_LINK || 'http://localhost:3000'
 
 export async function createNewBoard(boardData) {
     try {
-        const response = await fetch('http://localhost:3000/api/boards', {
+        const response = await fetch(`${baseURL}/api/boards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -19,7 +20,7 @@ export async function createNewBoard(boardData) {
 
 export async function deleteBoard(boardId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardId}`, {
+        const response = await fetch(`${baseURL}/api/boards/${boardId}`, {
             method: 'DELETE',
         })
 
@@ -32,7 +33,7 @@ export async function deleteBoard(boardId) {
 
 export async function getBoards() {
 	try {
-        const response = await fetch('http://localhost:3000/api/boards')
+        const response = await fetch(`${baseURL}/api/boards`)
         const data = await response.json()
 		return data
     } catch (error) {
@@ -42,7 +43,7 @@ export async function getBoards() {
 
 export async function getCardsFromBoard(boardId) {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardId}/cards`)
+        const response = await fetch(`${baseURL}/api/boards/${boardId}/cards`)
         const data = await response.json()
 		return data
     } catch (error) {
@@ -52,7 +53,7 @@ export async function getCardsFromBoard(boardId) {
 
 export async function createNewCard(boardId, cardData) {
     try {
-        const response = await fetch(`http://localhost:3000/api/boards/${boardId}/cards`, {
+        const response = await fetch(`${baseURL}/api/boards/${boardId}/cards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ export async function createNewCard(boardId, cardData) {
 export async function deleteCard(cardId) {
     try {
 		const id = parseInt(cardId)
-        const response = await fetch(`http://localhost:3000/api/boards/${DEFAULT_BOARD_ID}/cards/${id}`, {
+        const response = await fetch(`${baseURL}/api/boards/${DEFAULT_BOARD_ID}/cards/${id}`, {
             method: 'DELETE',
         })
 
@@ -85,7 +86,7 @@ export async function deleteCard(cardId) {
 export async function changeUpvote(cardId, action) {
     try {
 		const id = parseInt(cardId)
-        const response = await fetch(`http://localhost:3000/api/boards/${DEFAULT_BOARD_ID}/cards/${id}`, {
+        const response = await fetch(`${baseURL}/api/boards/${DEFAULT_BOARD_ID}/cards/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
