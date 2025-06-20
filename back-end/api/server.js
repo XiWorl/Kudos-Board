@@ -57,6 +57,19 @@ server.get("/api/boards/:boardId", async (req, res, next) => {
 	}
 })
 
+server.get("/api/boards/:boardId/cards", async (req, res, next) => {
+	try {
+		const id = parseInt(req.params.boardId)
+		const data = await prisma.card.findMany({ where: {boardId: id} })
+		res.status(200).json(data)
+		return
+
+	} catch (err) {
+		next(err)
+		return
+	}
+})
+
 server.get("/api/cards", async (req, res, next) => {
 	try {
 		const data = await prisma.card.findMany()
