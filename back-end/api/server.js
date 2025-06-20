@@ -147,6 +147,45 @@ server.delete("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
 	}
 })
 
+// PATCH
+server.patch("/api/boards/:boardId/cards/:cardId", async (req, res, next) => {
+	const action = req.body["action"]
+	
+	if (action !== undefined) {
+		try {
+			const id = parseInt(req.params.cardId)
+			const data = await prisma.card.findUnique({ where: {id: id} })
+			if (data == null || data.upvotes == null ) {
+				next({ message: "Card not found", status: 404 })
+				return
+			}
+
+			let updated = ""
+
+			if (action == "increment") {
+				updated = await prisma.card.update({
+					where:{id: id}, data: {upvotes: data.upvotes + 1}
+				})
+			} else if (action == "decrement") {
+				updated = await prisma.card.update({
+					where:{id: id}, data: {upvotes: data.upvotes - 1}
+				})
+			}
+			res.status(200).json(updated)
+			return
+
+		} catch (err) {
+			next(err)
+			return
+		}
+	}
+
+	next({ message: "Invalid action", status: 400 })
+})
+
+//TODO: name all card id's "cardid" and board id's "boardid"
+
+
 // Error handling middleware
 server.use((err, req, res, next) => {
 	const { message, status = 500 } = err
