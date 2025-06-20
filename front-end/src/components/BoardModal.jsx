@@ -24,7 +24,7 @@ export function BoardModal(props) {
                 </div>
                 <div>
                     <h3>Author</h3>
-                    <input type="text" id="board-Author"/>
+                    <input type="text" id="board-author"/>
                 </div>
                 <button onClick={createBoard(props.displayedCards, props.setDisplayedCards)}>Create a Board</button>
             </div>
@@ -36,9 +36,9 @@ function createBoard(displayedCards, setDisplayedCards) {
     return async function() {
         const title = document.getElementById("board-title").value
         const category = document.getElementById("board-category").value
-        const author = document.getElementById("board-Author").value
+        const author = document.getElementById("board-author").value
 
-        if (category === DEFAULT_CATEGORY || title === "" || title === " ") {
+        if (category == DEFAULT_CATEGORY || title === "" || title === " ") {
             alert("Please select a category and title for your board")
             return
         }
@@ -55,4 +55,7 @@ export function enableBoardModal() {
 
 export function disableBoardModal() {
     document.getElementById("board-modal").style.display = "none"
+    document.getElementById("board-category").value = DEFAULT_CATEGORY
+    document.getElementById("board-author").value = ""
+    document.getElementById("board-title").value = ""
 }
