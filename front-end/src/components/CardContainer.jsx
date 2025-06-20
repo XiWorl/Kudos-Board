@@ -67,7 +67,7 @@ function Container(props) {
 		<div className="container">
 			{
 				props.cardsDisplayed.map((cardInfo) => {
-					return <Card cardBody={cardInfo} setCardsDisplayed={props.setCardsDisplayed} cardsDisplayed={props.cardsDisplayed} />
+					return <Card key={cardInfo.id}cardBody={cardInfo} setCardsDisplayed={props.setCardsDisplayed} cardsDisplayed={props.cardsDisplayed} />
 				})
 			}
 		</div>
